@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>Document_Analyser_Services</RootNamespace>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.3.107.2" />
+    <PackageReference Include="AWSSDK.Textract" Version="3.3.101.93" />
+    <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="4.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.0.1" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Document-Analyser-Common\Document-Analyser-Common.csproj" />
+  </ItemGroup>
+
+</Project>
