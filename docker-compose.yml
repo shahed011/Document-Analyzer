@@ -1,67 +1,9 @@
-version: "3.5"
+version: '3.4'
 
 services:
-#  document-analyser-localstack:
-#    image: localstack/localstack:0.10.5
-#    networks:
-#      - document-analyser-api-network
-#    container_name: document-analyser-localstack
-#    environment:
-#    - SERVICES=s3
-#    - HOSTNAME=document-analyser-localstack
-#    - DEFAULT_REGION=us-west-2
-#    ports:
-#    - "4572:4572"
-#    - "8080:8080"
-#
-#  document-analyser-awscli:
-#    image: garland/aws-cli-docker
-#    networks:
-#      - document-analyser-api-network
-#    container_name: document-analyser-awscli
-#    depends_on:
-#    - document-analyser-localstack 
-#    links:
-#    - document-analyser-localstack:localaws
-#    environment:
-#    - AWS_DEFAULT_REGION=us-west-2
-#    - AWS_ACCESS_KEY_ID=XX
-#    - AWS_SECRET_ACCESS_KEY=XX
-#    command:
-#    - /bin/sh
-#    - -c
-#    - |
-#        sleep 20
-#        aws --endpoint-url=http://localaws:4572 s3api create-bucket --bucket texttract-test
-
   document-analyser-api:
+    image: ${DOCKER_REGISTRY-}documentanalyserapi
     build:
       context: .
-      dockerfile: ./Document-Analyser-Api/Dockerfile
+      dockerfile: Document-Analyser-Api/Dockerfile
     container_name: document-analyser-api
-    entrypoint: "/bin/sh"
-    command:
-      - -c
-      - |
-        sleep 1
-        dotnet Document-Analyser-Api.dll
-    networks:
-      - document-analyser-api-network
-#    depends_on:
-#      - document-analyser-awscli
-#    links:
-#      - document-analyser-localstack:localaws
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://*:5000
-      - ASPNETCORE_PATHBASE=/document-analyser-api
-      - AWS_ACCESS_KEY_ID=XX
-      - AWS_SECRET_ACCESS_KEY=XX
-      - AWS_REGION=us-west-2
-      - S3Storage__Bucket=texttract-test
-    ports:
-      - "5454:5000"
-
-networks:
-  document-analyser-api-network:
-    name: document-analyser-api-network

@@ -7,7 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyser-Api", "Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyser-Services", "Document-Analyser-Services\Document-Analyser-Services.csproj", "{84CAE6FF-B41E-45C1-BC9A-85E608533B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Document-Analyser-Common", "Document-Analyser-Common\Document-Analyser-Common.csproj", "{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyser-Common", "Document-Analyser-Common\Document-Analyser-Common.csproj", "{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B66009DE-B9C8-4305-9259-E36E79730DBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D1BBCCB-7E94-4B5E-BA77-73090897A26E}"
+	ProjectSection(SolutionItems) = preProject
+		task-definition.json = task-definition.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +34,10 @@ Global
 		{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B66009DE-B9C8-4305-9259-E36E79730DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B66009DE-B9C8-4305-9259-E36E79730DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B66009DE-B9C8-4305-9259-E36E79730DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B66009DE-B9C8-4305-9259-E36E79730DBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  document-analyser-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+#      - ASPNETCORE_URLS=https://+:443;http://+:80
+#      - ASPNETCORE_HTTPS_PORT=44319
+      - AWS_ACCESS_KEY_ID=XX
+      - AWS_SECRET_ACCESS_KEY=XX
+      - AWS_REGION=eu-west-2
+      - S3Storage__Bucket=document-analyzer-bucket
+    ports:
+      - "63264:80"
+#      - "44319:443"
