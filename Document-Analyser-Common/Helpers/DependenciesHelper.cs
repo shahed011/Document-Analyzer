@@ -1,7 +1,7 @@
 ﻿using Lamar;
 using Microsoft.Extensions.Configuration;
 
-namespace Document_Analyser_Common.Helpers
+namespace Document_Analyzer_Common.Helpers
 {
     public static class DependenciesHelper
     {

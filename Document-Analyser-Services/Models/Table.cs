@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Document_Analyser_Services.Models
+namespace Document_Analyzer_Services.Models
 {
     public class Table
     {

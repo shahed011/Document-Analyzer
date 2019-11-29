@@ -1,11 +1,11 @@
 ﻿using Amazon.Textract;
-using Document_Analyser_Services.Infrastructure.Configuration;
-using Document_Analyser_Services.Models;
+using Document_Analyzer_Services.Infrastructure.Configuration;
+using Document_Analyzer_Services.Models;
 using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Document_Analyser_Services.Services
+namespace Document_Analyzer_Services.Services
 {
     public class DocumentReadAnalyzeService : IDocumentReadAnalyzeService
     {

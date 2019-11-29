@@ -1,20 +1,20 @@
-﻿using Document_Analyser_Services.Services;
+﻿using Document_Analyzer_Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace Document_Analyser_Api.Controllers
+namespace Document_Analyzer_Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DocumentAnalyserController : ControllerBase
+    public class DocumentAnalyzerController : ControllerBase
     {
         private readonly IDocumentReadAnalyzeService _readAnalyzeService;
         private readonly IFileService _fileService;
-        private readonly ILogger<DocumentAnalyserController> _logger;
+        private readonly ILogger<DocumentAnalyzerController> _logger;
 
-        public DocumentAnalyserController(IDocumentReadAnalyzeService readAnalyzeService, IFileService fileService, ILogger<DocumentAnalyserController> logger)
+        public DocumentAnalyzerController(IDocumentReadAnalyzeService readAnalyzeService, IFileService fileService, ILogger<DocumentAnalyzerController> logger)
         {
             _readAnalyzeService = readAnalyzeService;
             _fileService = fileService;
@@ -22,10 +22,9 @@ namespace Document_Analyser_Api.Controllers
         }
 
         [HttpPost]
-        [Route("analyse")]
+        [Route("analyze")]
         public async Task<IActionResult> Get(IFormFile file)
         {
-            _logger.LogInformation("In Controller ------------------");
             var fileKey = await _fileService.UploadFileAsync(file);
             //var response = await _readAnalyzeService.ReadDocumentText(fileKey);
             var response = await _readAnalyzeService.ReadDocumentTable(fileKey);

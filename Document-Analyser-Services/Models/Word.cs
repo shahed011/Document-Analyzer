@@ -1,6 +1,6 @@
 ﻿using Amazon.Textract.Model;
 
-namespace Document_Analyser_Services.Models
+namespace Document_Analyzer_Services.Models
 {
     public class Word
     {

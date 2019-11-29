@@ -1,5 +1,5 @@
 using Amazon.Textract;
-using Document_Analyser_Api.Extensions;
+using Document_Analyzer_Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Lamar;
 using Amazon.S3;
-using Document_Analyser_Services.Infrastructure.Dependencies;
+using Document_Analyzer_Services.Infrastructure.Dependencies;
 
-namespace Document_Analyser_Api
+namespace Document_Analyzer_Api
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace Document_Analyser_Api
             services.AddAWSService<IAmazonS3>();
             services.AddAWSService<IAmazonTextract>();
 
-            services.IncludeRegistry<DocumentAnalyserServiceRegistry>();
+            services.IncludeRegistry<DocumentAnalyzerServiceRegistry>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

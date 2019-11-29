@@ -3,7 +3,7 @@ using Amazon.Textract.Model;
 using System;
 using System.Collections.Generic;
 
-namespace Document_Analyser_Services.Models
+namespace Document_Analyzer_Services.Models
 {
     public class Page
     {
@@ -31,7 +31,7 @@ namespace Document_Analyser_Services.Models
             {
                 if (block.BlockType == BlockType.PAGE)
                 {
-                    Geometry = new AnalyserGeometry(block.Geometry);
+                    Geometry = new AnalyzerGeometry(block.Geometry);
                     Id = block.Id;
                 }
                 else if (block.BlockType == BlockType.LINE)

@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Document_Analyser_Api
+namespace Document_Analyzer_Api
 {
     public class Program
     {

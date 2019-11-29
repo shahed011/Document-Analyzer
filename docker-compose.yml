@@ -1,9 +1,9 @@
 version: '3.4'
 
 services:
-  document-analyser-api:
-    image: ${DOCKER_REGISTRY-}documentanalyserapi
+  document-analyzer-api:
+    image: ${DOCKER_REGISTRY-}documentanalyzerapi
     build:
       context: .
-      dockerfile: Document-Analyser-Api/Dockerfile
-    container_name: document-analyser-api
+      dockerfile: Document-Analyzer-Api/Dockerfile
+    container_name: document-analyzer-api

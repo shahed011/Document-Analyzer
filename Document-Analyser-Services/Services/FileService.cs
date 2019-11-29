@@ -1,11 +1,11 @@
 ﻿using Amazon.S3.Transfer;
-using Document_Analyser_Services.Infrastructure.Configuration;
+using Document_Analyzer_Services.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 using System;
 using System.Threading.Tasks;
 
-namespace Document_Analyser_Services.Services
+namespace Document_Analyzer_Services.Services
 {
     public class FileService : IFileService
     {

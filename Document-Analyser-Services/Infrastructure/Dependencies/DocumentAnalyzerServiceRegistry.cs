@@ -1,14 +1,14 @@
 ﻿using Amazon.S3.Transfer;
-using Document_Analyser_Common.Helpers;
-using Document_Analyser_Services.Infrastructure.Configuration;
-using Document_Analyser_Services.Services;
+using Document_Analyzer_Common.Helpers;
+using Document_Analyzer_Services.Infrastructure.Configuration;
+using Document_Analyzer_Services.Services;
 using Lamar;
 
-namespace Document_Analyser_Services.Infrastructure.Dependencies
+namespace Document_Analyzer_Services.Infrastructure.Dependencies
 {
-    public class DocumentAnalyserServiceRegistry : ServiceRegistry
+    public class DocumentAnalyzerServiceRegistry : ServiceRegistry
     {
-        public DocumentAnalyserServiceRegistry()
+        public DocumentAnalyzerServiceRegistry()
         {
             ForSingletonOf<S3Settings>().Use(x => DependenciesHelper.GetSettings<S3Settings>(x, "S3Settings"));
 

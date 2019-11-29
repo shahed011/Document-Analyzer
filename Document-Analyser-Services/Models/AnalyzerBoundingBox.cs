@@ -1,10 +1,10 @@
 ﻿using Amazon.Textract.Model;
 
-namespace Document_Analyser_Services.Models
+namespace Document_Analyzer_Services.Models
 {
-    public class AnalyserBoundingBox : BoundingBox
+    public class AnalyzerBoundingBox : BoundingBox
     {
-        public AnalyserBoundingBox(float width, float height, float left, float top) : base()
+        public AnalyzerBoundingBox(float width, float height, float left, float top) : base()
         {
             Width = width;
             Height = height;

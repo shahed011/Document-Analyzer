@@ -1,10 +1,9 @@
 ﻿using Amazon.Textract;
 using Amazon.Textract.Model;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Document_Analyser_Services.Services
+namespace Document_Analyzer_Services.Services
 {
     public class TextractTextDetectionService : ITextractTextDetectionService
     {

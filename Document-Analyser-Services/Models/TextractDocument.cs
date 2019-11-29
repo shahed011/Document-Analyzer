@@ -2,7 +2,7 @@
 using Amazon.Textract.Model;
 using System.Collections.Generic;
 
-namespace Document_Analyser_Services.Models
+namespace Document_Analyzer_Services.Models
 {
     internal class TextractDocument
     {

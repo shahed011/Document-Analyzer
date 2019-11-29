@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace Document_Analyser_Services.Services
+namespace Document_Analyzer_Services.Services
 {
     public interface IFileService
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace Document_Analyser_Api.Extensions
+namespace Document_Analyzer_Api.Extensions
 {
     public static class ConfigurationExtensions
     {

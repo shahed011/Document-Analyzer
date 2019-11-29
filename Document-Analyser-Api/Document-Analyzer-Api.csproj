@@ -1,16 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>Document_Analyser_Services</RootNamespace>
+    <RootNamespace>Document_Analyzer_Api</RootNamespace>
+    <UserSecretsId>b361aa07-710f-4541-8ef9-60f124112848</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <Nullable>enable</Nullable>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.3.107.2" />
-    <PackageReference Include="AWSSDK.Textract" Version="3.3.101.93" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.100.1" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="4.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="Serilog" Version="2.9.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
@@ -19,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Document-Analyser-Common\Document-Analyser-Common.csproj" />
+    <ProjectReference Include="..\Document-Analyser-Services\Document-Analyzer-Services.csproj" />
   </ItemGroup>
 
 </Project>

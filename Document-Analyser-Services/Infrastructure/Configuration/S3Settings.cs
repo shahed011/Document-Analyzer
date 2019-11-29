@@ -1,4 +1,4 @@
-﻿namespace Document_Analyser_Services.Infrastructure.Configuration
+﻿namespace Document_Analyzer_Services.Infrastructure.Configuration
 {
     public class S3Settings
     {

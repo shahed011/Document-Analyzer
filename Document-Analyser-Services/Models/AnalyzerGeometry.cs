@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 
-namespace Document_Analyser_Services.Models
+namespace Document_Analyzer_Services.Models
 {
-    public class AnalyserGeometry : Geometry
+    public class AnalyzerGeometry : Geometry
     {
-        public AnalyserGeometry(Geometry geometry) : base()
+        public AnalyzerGeometry(Geometry geometry) : base()
         {
             BoundingBox = geometry.BoundingBox;
             Polygon = geometry.Polygon;
 
-            var bb = new AnalyserBoundingBox(BoundingBox.Width, BoundingBox.Height, BoundingBox.Left, BoundingBox.Top);
+            var bb = new AnalyzerBoundingBox(BoundingBox.Width, BoundingBox.Height, BoundingBox.Left, BoundingBox.Top);
             var polygons = new List<Point>();
 
             foreach (var singlePoligon in Polygon)
