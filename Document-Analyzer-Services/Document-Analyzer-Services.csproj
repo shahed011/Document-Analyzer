@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Document-Analyser-Common\Document-Analyzer-Common.csproj" />
+    <ProjectReference Include="..\Document-Analyzer-Common\Document-Analyzer-Common.csproj" />
   </ItemGroup>
 
 </Project>

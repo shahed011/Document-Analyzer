@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyzer-Api", "Document-Analyser-Api\Document-Analyzer-Api.csproj", "{069DC1DB-0FA6-42D3-9D50-DD92373C481B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyzer-Api", "Document-Analyzer-Api\Document-Analyzer-Api.csproj", "{069DC1DB-0FA6-42D3-9D50-DD92373C481B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyzer-Services", "Document-Analyser-Services\Document-Analyzer-Services.csproj", "{84CAE6FF-B41E-45C1-BC9A-85E608533B12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyzer-Services", "Document-Analyzer-Services\Document-Analyzer-Services.csproj", "{84CAE6FF-B41E-45C1-BC9A-85E608533B12}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyzer-Common", "Document-Analyser-Common\Document-Analyzer-Common.csproj", "{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Document-Analyzer-Common", "Document-Analyzer-Common\Document-Analyzer-Common.csproj", "{4F1AF56C-E889-40A8-A9A3-F3F013D2B62D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B66009DE-B9C8-4305-9259-E36E79730DBD}"
 EndProject

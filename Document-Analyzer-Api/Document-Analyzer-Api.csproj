@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Document-Analyser-Services\Document-Analyzer-Services.csproj" />
+    <ProjectReference Include="..\Document-Analyzer-Services\Document-Analyzer-Services.csproj" />
   </ItemGroup>
 
 </Project>
