@@ -45,39 +45,13 @@
   "placementConstraints": [],
   "memory": "300",
   "taskRoleArn": "arn:aws:iam::385916149497:role/ecsTaskExecutionRole",
-  "compatibilities": [
-    "EC2"
-  ],
-  "taskDefinitionArn": "arn:aws:ecs:eu-west-2:385916149497:task-definition/document-analyzer-task:1",
   "family": "document-analyzer-task",
-  "requiresAttributes": [
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-ecr-pull"
-    }
-  ],
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
   ],
   "networkMode": null,
   "cpu": "128",
-  "revision": 1,
-  "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
   "volumes": []
