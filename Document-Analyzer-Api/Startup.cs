@@ -9,6 +9,7 @@ using Serilog;
 using Lamar;
 using Amazon.S3;
 using Document_Analyzer_Services.Infrastructure.Dependencies;
+using Microsoft.AspNetCore.Http;
 
 namespace Document_Analyzer_Api
 {
@@ -43,6 +44,14 @@ namespace Document_Analyzer_Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.Map("/operations/status", configuration =>
+            {
+                configuration.Run(async context =>
+                {
+                    await context.Response.WriteAsync("IPMONITOROK");
+                });
+            });
 
             app.UseHttpsRedirection();
 
