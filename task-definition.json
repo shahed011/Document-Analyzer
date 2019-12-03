@@ -54,7 +54,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "document-analyzer-contianer"
+      "name": "document-analyzer-container"
     }
   ],
   "placementConstraints": [],
