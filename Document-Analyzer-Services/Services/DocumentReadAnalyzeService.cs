@@ -20,6 +20,21 @@ namespace Document_Analyzer_Services.Services
             _s3Settings = s3Settings;
         }
 
+        public async Task<TextractDocument> GetTextractDocument(string documentKey)
+        {
+            var jobId = await _analysisService.StartDocumentAnalysis(_s3Settings.S3BucketName ?? string.Empty, documentKey, "TABLES");
+
+            await _analysisService.WaitForJobCompletion(jobId);
+            var results = await _analysisService.GetJobResults(jobId);
+
+            if (results.JobStatus == JobStatus.FAILED)
+            {
+                return new TextractDocument(new Amazon.Textract.Model.GetDocumentAnalysisResponse());
+            }
+
+            return new TextractDocument(results);
+        }
+
         public async Task<string> ReadDocumentText(string documentKey)
         {
             var jobId = await _detectionService.StartDocumentTextDetection(_s3Settings.S3BucketName ?? string.Empty, documentKey);

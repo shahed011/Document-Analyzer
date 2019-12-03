@@ -1,7 +1,7 @@
-﻿using Amazon.Textract.Model;
+﻿using Amazon.Textract;
+using Amazon.Textract.Model;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Document_Analyzer_Services.Models
 {
@@ -21,16 +21,18 @@ namespace Document_Analyzer_Services.Models
             Id = block.Id;
             Rows = new List<Row>();
 
-            var rowIndex = 1;
-            var row = new Row();
-
             var relationships = block.Relationships;
             if (relationships != null && relationships.Count > 0)
             {
-                relationships.ForEach(r => {
-                    if (r.Type == "CHILD")
+                var rowIndex = 1;
+                var row = new Row();
+
+                foreach (var relationship in relationships)
+                {
+                    if (relationship.Type == RelationshipType.CHILD)
                     {
-                        r.Ids.ForEach(id => {
+                        foreach (var id in relationship.Ids)
+                        {
                             var cell = new Cell(blocks.Find(b => b.Id == id) ?? new Block(), blocks);
 
                             if (cell.RowIndex > rowIndex)
@@ -41,11 +43,12 @@ namespace Document_Analyzer_Services.Models
                             }
 
                             row.Cells.Add(cell);
-                        });
+                        }
+
                         if (row != null && row.Cells.Count > 0)
                             Rows.Add(row);
                     }
-                });
+                }
             }
         }
         public override string ToString()

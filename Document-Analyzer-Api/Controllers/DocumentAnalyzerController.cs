@@ -26,7 +26,6 @@ namespace Document_Analyzer_Api.Controllers
         public async Task<IActionResult> Get(IFormFile file)
         {
             var fileKey = await _fileService.UploadFileAsync(file);
-            //var response = await _readAnalyzeService.ReadDocumentText(fileKey);
             var response = await _readAnalyzeService.ReadDocumentTable(fileKey);
 
             return Ok(response);

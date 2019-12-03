@@ -4,69 +4,53 @@ using System.Collections.Generic;
 
 namespace Document_Analyzer_Services.Models
 {
-    internal class TextractDocument
+    public class TextractDocument
     {
-        private List<Block> _blockMap;
-        private List<List<Block>> _documentPages;
-
-        public List<GetDocumentAnalysisResponse> ResponsePages { get; set; }
         public List<Page> Pages { get; set; }
-        public List<List<Block>> PageBlocksReturn => _documentPages;
 
         public TextractDocument(GetDocumentAnalysisResponse response)
         {
-            _blockMap = new List<Block>();
-            _documentPages = new List<List<Block>>();
-
             Pages = new List<Page>();
-            ResponsePages = new List<GetDocumentAnalysisResponse>{ response };
 
-            ParseDocumentPagesAndBlockMap();
-            Parse();
+            var allPageBlocks = ParseDocumentPagesAndBlockMap(response);
+            Parse(allPageBlocks, response.Blocks);
         }
 
-        private void ParseDocumentPagesAndBlockMap()
+        private List<List<Block>> ParseDocumentPagesAndBlockMap(GetDocumentAnalysisResponse response)
         {
-            List<Block>? documentPage = null;
+            var allPageBlocks = new List<List<Block>>();
+            var pageBlocks = new List<Block>();
 
-            foreach (var page in ResponsePages)
+            foreach (var block in response.Blocks)
             {
-                foreach (var block in page.Blocks)
+                if (block.BlockType == BlockType.PAGE)
                 {
-                    _blockMap.Add(block);
-
-                    if (block.BlockType == BlockType.PAGE)
+                    if (pageBlocks.Count > 0)
                     {
-                        if (documentPage != null)
-                        {
-                            _documentPages.Add(documentPage);
-                        }
-
-                        documentPage = new List<Block>{ block };
+                        allPageBlocks.Add(pageBlocks);
                     }
-                    else
-                    {
-                        if (documentPage ==  null)
-                        {
-                            documentPage = new List<Block>();
-                        }
 
-                        documentPage.Add(block);
-                    }
+                    pageBlocks = new List<Block>{ block };
+                }
+                else
+                {
+                    pageBlocks.Add(block);
                 }
             }
 
-            if (documentPage != null)
+            if (pageBlocks != null)
             {
-                _documentPages.Add(documentPage);
+                allPageBlocks.Add(pageBlocks);
             }
+
+            return allPageBlocks;
         }
 
-        private void Parse()
+        private void Parse(List<List<Block>> allPageBlocks, List<Block> allBlocks)
         {
-            foreach (var documentPage in _documentPages)
+            foreach (var pageBlocks in allPageBlocks)
             {
-                var page = new Page(documentPage, _blockMap);
+                var page = new Page(pageBlocks, allBlocks);
                 Pages.Add(page);
             }
         }
