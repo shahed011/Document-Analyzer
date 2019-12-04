@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace Document_Analyzer_Api.Controllers
@@ -25,10 +26,21 @@ namespace Document_Analyzer_Api.Controllers
         [Route("analyze")]
         public async Task<IActionResult> Get(IFormFile file)
         {
-            var fileKey = await _fileService.UploadFileAsync(file);
-            var response = await _readAnalyzeService.ReadDocumentTable(fileKey);
+            _logger.LogInformation("In Controller");
+            try
+            {
+                var fileKey = await _fileService.UploadFileAsync(file);
+                _logger.LogInformation("Done uploading file");
+                var response = await _readAnalyzeService.ReadDocumentTable(fileKey);
+                _logger.LogInformation("Done analyzing");
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogInformation(ex, "Error");
+            }
 
-            return Ok(response);
+            return NoContent();
         }
     }
 }

@@ -32,6 +32,10 @@
         {
           "name": "S3Settings__S3BucketName",
           "value": "document-analyzer-bucket"
+        },
+        {
+          "name": "S3Settings__Region",
+          "value": "eu-west-2"
         }
       ],
       "resourceRequirements": null,
