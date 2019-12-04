@@ -4,7 +4,15 @@
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
-      "logConfiguration": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/document-analyzer-task",
+          "awslogs-region": "eu-west-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
       "entryPoint": null,
       "portMappings": [
         {
