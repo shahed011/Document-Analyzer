@@ -26,13 +26,10 @@ namespace Document_Analyzer_Api.Controllers
         [Route("analyze")]
         public async Task<IActionResult> Get(IFormFile file)
         {
-            _logger.LogInformation("In Controller");
             try
             {
                 var fileKey = await _fileService.UploadFileAsync(file);
-                _logger.LogInformation("Done uploading file");
                 var response = await _readAnalyzeService.ReadDocumentTable(fileKey);
-                _logger.LogInformation("Done analyzing");
                 return Ok(response);
             }
             catch(Exception ex)
