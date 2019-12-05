@@ -1,2 +1,2 @@
 # Document-Analyzer
-![](https://github.com/shahed011/Document-Analyzer/workflows/.github/workflows/aws-ecs.yml/badge.svg)
+![](https://github.com/shahed011/document-analyzer/workflows/Deploy%20to%20Amazon%20ECS/badge.svg)
