@@ -34,7 +34,7 @@ namespace Document_Analyzer_Api.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogInformation(ex, "Error");
+                _logger.LogInformation(ex, "Error analyzing document");
             }
 
             return NoContent();

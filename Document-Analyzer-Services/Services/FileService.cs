@@ -24,10 +24,14 @@ namespace Document_Analyzer_Services.Services
         {
             try
             {
+                _logger.Information($"Started uploading file {file.FileName}");
+
                 var fileKey = Guid.NewGuid().ToString();
                 using var fileStream = file.OpenReadStream();
 
                 await _transferUtility.UploadAsync(fileStream, _s3Settings.S3BucketName, fileKey);
+
+                _logger.Information($"Finished uploading file {file.FileName}");
 
                 return fileKey;
             }

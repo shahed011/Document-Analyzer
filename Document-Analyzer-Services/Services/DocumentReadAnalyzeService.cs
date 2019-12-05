@@ -1,6 +1,7 @@
 ﻿using Amazon.Textract;
 using Document_Analyzer_Services.Infrastructure.Configuration;
 using Document_Analyzer_Services.Models;
+using Serilog;
 using System;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,14 @@ namespace Document_Analyzer_Services.Services
         private readonly ITextractTextAnalysisService _analysisService;
         private readonly ITextractTextDetectionService _detectionService;
         private readonly S3Settings _s3Settings;
+        private readonly ILogger _logger;
 
-        public DocumentReadAnalyzeService(ITextractTextAnalysisService analysisService, ITextractTextDetectionService detectionService, S3Settings s3Settings)
+        public DocumentReadAnalyzeService(ITextractTextAnalysisService analysisService, ITextractTextDetectionService detectionService, S3Settings s3Settings, ILogger logger)
         {
             _analysisService = analysisService;
             _detectionService = detectionService;
             _s3Settings = s3Settings;
+            _logger = logger;
         }
 
         public async Task<TextractDocument> GetTextractDocument(string documentKey)
@@ -64,10 +67,14 @@ namespace Document_Analyzer_Services.Services
 
         public async Task<string> ReadDocumentTable(string documentKey)
         {
+            _logger.Information("Started analyzing document");
+
             var jobId = await _analysisService.StartDocumentAnalysis(_s3Settings.S3BucketName ?? string.Empty, documentKey, "TABLES");
             
             await _analysisService.WaitForJobCompletion(jobId);
             var results = await _analysisService.GetJobResults(jobId);
+
+            _logger.Information("Finished analyzing document");
 
             if (results.JobStatus == JobStatus.FAILED)
             {

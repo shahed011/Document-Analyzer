@@ -71,7 +71,7 @@
   ],
   "placementConstraints": [],
   "memory": "300",
-  "taskRoleArn": "arn:aws:iam::385916149497:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::385916149497:role/ecsDocumentAnalyzerAccess",
   "family": "document-analyzer-task",
   "pidMode": null,
   "requiresCompatibilities": [
