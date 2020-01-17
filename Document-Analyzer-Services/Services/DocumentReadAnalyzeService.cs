@@ -3,6 +3,8 @@ using Document_Analyzer_Services.Infrastructure.Configuration;
 using Document_Analyzer_Services.Models;
 using Serilog;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +16,8 @@ namespace Document_Analyzer_Services.Services
         private readonly ITextractTextDetectionService _detectionService;
         private readonly S3Settings _s3Settings;
         private readonly ILogger _logger;
+
+        private readonly List<string> ColumnTextsToCheck = new List<string> { "amount", "transaction", "transactions", "refund", "refunds", "commission", "chargeback", "chargebacks" };
 
         public DocumentReadAnalyzeService(ITextractTextAnalysisService analysisService, ITextractTextDetectionService detectionService, S3Settings s3Settings, ILogger logger)
         {
@@ -104,6 +108,68 @@ namespace Document_Analyzer_Services.Services
             }
 
             return stringBuilder.ToString();
+        }
+
+        public async Task<Dictionary<string, double>> ReadDocumentData(string documentKey)
+        {
+            _logger.Information("Started analyzing document");
+
+            var jobId = await _analysisService.StartDocumentAnalysis(_s3Settings.S3BucketName ?? string.Empty, documentKey, "TABLES");
+
+            await _analysisService.WaitForJobCompletion(jobId);
+            var results = await _analysisService.GetJobResults(jobId);
+
+            _logger.Information("Finished analyzing document");
+
+            if (results.JobStatus == JobStatus.FAILED)
+            {
+                return new Dictionary<string, double>();
+            }
+
+            var document = new TextractDocument(results);
+            var result = new Dictionary<string, double>();
+
+            var cellsToConsider = new List<int>();
+            foreach (var page in document.Pages)
+            {
+                foreach (var table in page.Tables)
+                {
+                    cellsToConsider = new List<int>();
+                    foreach (var row in table.Rows)
+                    {
+                        if (cellsToConsider.Any())
+                        {
+                            foreach (var cellIndex in cellsToConsider)
+                            {
+                                var key = table.Rows[0].Cells[cellIndex - 1].Text;
+                                var valueString = row.Cells[cellIndex - 1].Text;
+
+                                if (double.TryParse(valueString, out var value))
+                                {
+                                    if (result.ContainsKey(key))
+                                        result[key] += value;
+                                    else
+                                        result.Add(key, value);
+                                }
+                            }
+
+                            continue;
+                        }
+
+                        foreach (var cell in row.Cells)
+                        {
+                            if (cell.Text.Split(" ").Any(x => ColumnTextsToCheck.Contains(x.ToLower())) && !cellsToConsider.Any(x => x == cell.ColumnIndex))
+                            //if (ColumnTextsToCheck.Any(x => x.Contains(cell.Text, StringComparison.OrdinalIgnoreCase) && !cellsToConsider.Any(x => x == cell.ColumnIndex)))
+                            {
+                                cellsToConsider.Add(cell.ColumnIndex);
+                                result.Add(cell.Text, 0);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

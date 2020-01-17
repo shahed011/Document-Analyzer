@@ -29,7 +29,7 @@ namespace Document_Analyzer_Api.Controllers
             try
             {
                 var fileKey = await _fileService.UploadFileAsync(file);
-                var response = await _readAnalyzeService.ReadDocumentTable(fileKey);
+                var response = await _readAnalyzeService.ReadDocumentData(fileKey);
                 return Ok(response);
             }
             catch(Exception ex)

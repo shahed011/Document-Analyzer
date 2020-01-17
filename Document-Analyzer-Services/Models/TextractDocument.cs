@@ -1,6 +1,7 @@
 ﻿using Amazon.Textract;
 using Amazon.Textract.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Document_Analyzer_Services.Models
 {
@@ -20,6 +21,11 @@ namespace Document_Analyzer_Services.Models
         {
             var allPageBlocks = new List<List<Block>>();
             var pageBlocks = new List<Block>();
+
+            // Inconsistancy in page number
+            var numberOfPages = response.DocumentMetadata.Pages;
+            var noOfPages = response.Blocks.Count(x => x.BlockType == BlockType.PAGE);
+            var noOfTable = response.Blocks.Count(x => x.BlockType == BlockType.TABLE);
 
             foreach (var block in response.Blocks)
             {
