@@ -159,10 +159,8 @@ namespace Document_Analyzer_Services.Services
                         foreach (var cell in row.Cells)
                         {
                             if (cell.Text.Split(" ").Any(x => ColumnTextsToCheck.Contains(x.ToLower())) && !cellsToConsider.Any(x => x == cell.ColumnIndex))
-                            //if (ColumnTextsToCheck.Any(x => x.Contains(cell.Text, StringComparison.OrdinalIgnoreCase) && !cellsToConsider.Any(x => x == cell.ColumnIndex)))
                             {
                                 cellsToConsider.Add(cell.ColumnIndex);
-                                result.Add(cell.Text, 0);
                             }
                         }
                     }
